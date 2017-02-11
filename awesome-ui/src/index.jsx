@@ -1,19 +1,23 @@
 import 'styles/main.scss';
+import 'materialize-css';
 
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { Router, Redirect, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
+import configureStore from './store/configureStore';
+import routes from './routes';
 
-import App from './components/App';
-import reducers from './reducers';
-
-const createStoreWithMiddleware = applyMiddleware(ReduxThunk)(createStore);
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
-        <App />
+    <Provider store={store}>
+        <Router history={history}>
+            <Redirect from='/' to='dashboard' />
+            {routes}
+        </Router>
     </Provider>, document.getElementById('app')
 );

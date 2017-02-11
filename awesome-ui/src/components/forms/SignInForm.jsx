@@ -13,7 +13,7 @@ class SignInForm extends Component {
     };
 
     state = {
-        fields: { name: '', password: '', password2: '', email: '' },
+        fields: { name: '', password: '', password2: '', username: '' },
     };
 
     render () {
@@ -26,11 +26,11 @@ class SignInForm extends Component {
                     <div className='row'>
                         <div className='col s6'>
                             <Input
-                                hasError={errorMessages.email && !!errorMessages.email.length}
+                                hasError={errorMessages.username && !!errorMessages.username.length}
                                 label='Username'
                                 type='email'
-                                onChange={this.inputChanged.bind(this, 'email')}
-                                value={fields.email}
+                                onChange={this.inputChanged.bind(this, 'username')}
+                                value={fields.username}
                             />
                         </div>
                         <div className='col s6'>
@@ -81,10 +81,10 @@ class SignInForm extends Component {
     }
 
     onSubmit () {
-        const { name, email, password, password2 } = this.state.fields;
+        const { name, username, password, password2 } = this.state.fields;
         if (password === password2) {
             this.props.signIn({
-                email,
+                username,
                 password,
                 name,
             });
