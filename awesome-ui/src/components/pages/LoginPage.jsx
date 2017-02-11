@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Jumbotron, Panel } from 'react-bootstrap';
 
 import Navbar from '../Navbar';
-import LogInForm from '../forms/LogInForm';
+import LoginForm from '../forms/LoginForm';
 import RegisterForm from '../forms/RegisterForm';
 
 class LoginPage extends Component {
@@ -25,7 +25,7 @@ class LoginPage extends Component {
                         </div>
                         <div className='col-md-5'>
                             <Panel header='Login'>
-                                <LogInForm />
+                                <LoginForm />
                             </Panel>
                         </div>
                     </div>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
-import Input from '../common/Input';
+import { Input } from '../common/Input';
 import { isValidEmail } from '../../utils/misc';
-import { signIn } from '../../actions/signin';
+import { signIn } from '../../actions/auth';
 
 class RegisterForm extends Component {
     static propTypes = {
@@ -146,6 +146,6 @@ class RegisterForm extends Component {
     }
 }
 
-export default connect(({ signin }) => {
-    return { errorMessages: signin.errorMessages };
+export default connect(({ auth }) => {
+    return { errorMessages: auth.registerErrorMessages };
 }, { signIn })(RegisterForm);

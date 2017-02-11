@@ -11,9 +11,9 @@ import { requireNoAuthentication } from './components/auth/notAuthenticatedCompo
 
 export default (
     <Route path='/'>
-        <Route path='login' component={requireNoAuthentication(LoginPage)}/>
         <Route path='dashboard' component={requireAuthentication(DashboardPage)} />
         <Route path='library' component={requireAuthentication(WidgetLibraryPage)} />
+        <Route path='login' component={requireNoAuthentication(LoginPage)}/>
 
         <Route path='*' component={NotFoundPage} />
     </Route>

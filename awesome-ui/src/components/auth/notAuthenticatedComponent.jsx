@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import { fetchUser } from '../../actions/account';
+import { fetchUser } from '../../actions/auth';
 
-function mapStateToProps({ account }) {
+function mapStateToProps({ auth }) {
     return {
-        isAuthenticated: account.isAuthenticated,
+        isAuthenticated: auth.isAuthenticated,
     };
 }
 

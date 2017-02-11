@@ -57,8 +57,6 @@ class DashboardPage extends Component {
     }
 }
 
-const mapStateToProps = ({}) => {
+export default connect(() => {
     return {};
-};
-
-export default connect(mapStateToProps)(DashboardPage);
+})(DashboardPage);

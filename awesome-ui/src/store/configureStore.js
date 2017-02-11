@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
     }));
 }
 
-export default function configureStore(initialState) {
+export default (initialState) => {
     const store = createStore(
         rootReducer,
         initialState,

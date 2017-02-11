@@ -49,8 +49,6 @@ class WidgetLibraryPage extends Component {
     }
 }
 
-const mapStateToProps = ({}) => {
+export default connect(() => {
     return {};
-};
-
-export default connect(mapStateToProps)(WidgetLibraryPage);
+})(WidgetLibraryPage);

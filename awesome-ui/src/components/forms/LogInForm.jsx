@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Alert, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import Input from '../common/Input';
-import { logIn } from '../../actions/login';
+import { Input } from '../common/Input';
+import { logIn } from '../../actions/auth';
 import { isValidEmail } from '../../utils/misc';
 
-class LogInForm extends Component {
+class LoginForm extends Component {
     static propTypes = {
         logIn: React.PropTypes.func.isRequired,
         errorMessages: React.PropTypes.array,
@@ -100,6 +100,6 @@ class LogInForm extends Component {
     }
 }
 
-export default connect(({ login }) => {
-    return { errorMessages: login.errorMessages };
-}, { logIn })(LogInForm);
+export default connect(({ auth }) => {
+    return { errorMessages: auth.loginErrorMessages };
+}, { logIn })(LoginForm);
