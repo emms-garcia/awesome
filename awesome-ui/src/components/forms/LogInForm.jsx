@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { Alert, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import Button from '../common/Button';
 import Input from '../common/Input';
-
 import { logIn } from '../../actions/login';
+import { isValidEmail } from '../../utils/misc';
 
 class LogInForm extends Component {
     static propTypes = {
@@ -12,60 +12,91 @@ class LogInForm extends Component {
         errorMessages: React.PropTypes.array,
     };
 
-    state = { username: '', password: '' };
+    state = {
+        dirty: {},
+        fields: { username: '', password: ''},
+    };
+
+    isFieldValid (field) {
+        const value = this.state.fields[field];
+        switch (field) {
+            case 'password':
+                return value.length >= 3;
+            case 'username':
+                return isValidEmail(value);
+            default:
+                return true;
+        }
+    }
+
+    getValidationState (field) {
+        const isDirty = this.state.dirty[field];
+        const isValid = this.isFieldValid(field);
+
+        return isDirty ? (
+            isValid ? 'success' : 'error'
+        ) : null;
+    }
 
     render () {
         const { errorMessages } = this.props;
-        const { username, password } = this.state;
+        const { fields } = this.state;
+
         return (
-            <div>
-                <h4 className='center-align teal-text'>Log In</h4>
+            <form onSubmit={this.onSubmit.bind(this)}>
                 {
                     errorMessages && errorMessages.map((error, idx) => {
                         return (
-                            <p className='center-align red-text' key={idx}>{error}</p>
+                            <Alert bsStyle='danger' key={idx}>{error}</Alert>
                         );
                     })
                 }
-                <form className='col s12' onSubmit={this.onSubmit.bind()}>
-                    <div className='row'>
-                        <div className='col s12'>
-                            <Input
-                                label='Username'
-                                onChange={this.inputChanged.bind(this, 'username')}
-                                type='email'
-                                value={username}
-                            />
-                        </div>
+                <Input
+                    label='Username'
+                    onChange={this.inputChanged.bind(this, 'username')}
+                    placeholder='Username'
+                    size='lg'
+                    type='email'
+                    validationState={this.getValidationState('username')}
+                    value={fields.username}
+                />
+
+                <Input
+                    label='Password'
+                    onChange={this.inputChanged.bind(this, 'password')}
+                    placeholder='Password'
+                    size='lg'
+                    type='password'
+                    validationState={this.getValidationState('password')}
+                    value={fields.password}
+                />
+
+                <div className='row'>
+                    <div className='col-md-12 text-center'>
+                        <Button bsSize='lg' bsStyle='primary' type='submit'>Log In</Button>
                     </div>
-                    <div className='row'>
-                        <div className='col s12'>
-                            <Input
-                                label='Password'
-                                onChange={this.inputChanged.bind(this, 'password')}
-                                type='password'
-                                value={password}
-                            />
-                        </div>
-                    </div>
-                    <div className="row center-align">
-                        <Button
-                            className='waves-effect waves-light btn btn-large'
-                            onClick={this.onSubmit.bind(this)}
-                        >Log In</Button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         );
     }
 
     inputChanged (field, value) {
-        this.setState({ [field]: value });
+        if (!this.state.dirty[field]) {
+            this.setState({
+                dirty: { ...this.state.dirty, [field]: true },
+                fields: { ...this.state.fields, [field]: value },
+            });
+        } else {
+            this.setState({
+                fields: { ...this.state.fields, [field]: value },
+            });
+        }
     }
 
-    onSubmit () {
-        const { username, password } = this.state;
+    onSubmit (e) {
+        const { username, password } = this.state.fields;
         this.props.logIn(username, password);
+        e.preventDefault();
     }
 }
 

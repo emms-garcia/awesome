@@ -1,5 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import 'styles/main.scss';
-import 'materialize-css';
 
 import React from 'react';
 import { render } from 'react-dom';

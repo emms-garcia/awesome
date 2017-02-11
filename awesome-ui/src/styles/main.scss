@@ -1,6 +1,6 @@
 #app {
     height: 100%;
-    padding: 20px;
+    padding: 40px;
 
     div[data-reactroot] {
         display: flex;
@@ -17,4 +17,20 @@
 
 .header {
     padding: 10px;
+}
+
+.login-page {
+    .jumbotron {
+        padding: 20px;
+    }
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }

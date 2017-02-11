@@ -4,7 +4,7 @@ import Page from './Page';
 
 const NotFoundPage = () => {
     return (
-        <div className='center-align'>
+        <div className='centered'>
             <h1>404 Not Found</h1>
         </div>
     );

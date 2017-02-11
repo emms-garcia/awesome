@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
-import Button from '../common/Button';
 import Page from './Page';
+import PageHeader from './PageHeader';
 
 class WidgetLibraryPage extends Component {
     static propTypes = {
@@ -15,7 +16,8 @@ class WidgetLibraryPage extends Component {
     render () {
         const buttons = [
             <Button
-                className='btn btn-large red-text white'
+                bsStyle='primary'
+                bsSize='lg'
                 key='0'
                 onClick={() => browserHistory.push('/library/new')}
             >
@@ -23,8 +25,12 @@ class WidgetLibraryPage extends Component {
             </Button>
         ];
 
+        const header = (
+            <PageHeader buttons={buttons} text='Widget Library'/>
+        );
+
         return (
-            <Page buttons={buttons} header='Widget Library'>
+            <Page header={header}>
                 <div className='row'>
                     { this.renderWidgetLibrary() }
                 </div>
@@ -34,15 +40,10 @@ class WidgetLibraryPage extends Component {
 
     renderWidgetLibrary () {
         return (
-            <div className='col s12 center-align'>
-                <h3>Nothing here yet :(</h3>
-                <ul>
-                    <li>
-                        <h4>
-                        <Link to='/library/new'>Create a new Widget</Link> and share it with the community!
-                        </h4>
-                    </li>
-                </ul>
+            <div className='col-md-12'>
+                <div className='row text-center'>
+                    <h1>Nothing here yet :(</h1>
+                </div>
             </div>
         );
     }

@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
+import { Button, Jumbotron, Panel } from 'react-bootstrap';
 
+import Navbar from '../Navbar';
 import LogInForm from '../forms/LogInForm';
-import SignInForm from '../forms/SignInForm';
+import RegisterForm from '../forms/RegisterForm';
 
 class LoginPage extends Component {
     render() {
         return (
-            <div>
-                <section className='row'>
-                    <div className='col s12 card-panel red lighten-2 center-align'>
-                        <h3 className='white-text'>Awesome Project</h3>
+            <div className='container login-page'>
+                <Jumbotron>
+                    <div className='row'>
+                        <div className='col-md-12'>
+                            <h1>Awesome</h1>
+                            <p>This is the description</p>
+                            <p><Button bsStyle='primary'>Learn more</Button></p>
+                        </div>
                     </div>
-                </section>
-                <section className='row'>
-                    <div className='col s3 card-panel'>
-                        <LogInForm />
+                    <div className='row'>
+                        <div className='col-md-7'>
+                            <Panel header='Register'>
+                                <RegisterForm />
+                            </Panel>
+                        </div>
+                        <div className='col-md-5'>
+                            <Panel header='Login'>
+                                <LogInForm />
+                            </Panel>
+                        </div>
                     </div>
-                    <div className='col s8 offset-s1 card-panel'>
-                        <SignInForm />
-                    </div>
-                </section>
+                </Jumbotron>
             </div>
         );
     }

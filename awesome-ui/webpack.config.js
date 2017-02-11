@@ -12,7 +12,6 @@ module.exports = {
     entry: [
         'webpack-hot-middleware/client?reload=true',
         'webpack/hot/only-dev-server',
-        'materialize-loader!./materialize.config.js',
         javascriptEntryPath,
         htmlEntryPath
     ],
@@ -44,6 +43,10 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: 'file?name=[name].[ext]',
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader",
             },
             {
                 test: /\.scss$/,

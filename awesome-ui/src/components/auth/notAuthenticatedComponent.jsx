@@ -12,13 +12,12 @@ function mapStateToProps({ account }) {
 export function requireNoAuthentication(Component) {
 
     class notAuthenticatedComponent extends React.Component {
+        static propTypes = {
+            fetchUser: React.PropTypes.func.isRequired,
+            isAuthenticated: React.PropTypes.bool,
+        };
 
-        constructor(props) {
-            super(props);
-            this.state = {
-                loaded: false,
-            };
-        }
+        state = { loaded: false };
 
         componentWillMount() {
             this.checkAuth();
@@ -50,11 +49,6 @@ export function requireNoAuthentication(Component) {
 
         }
     }
-
-    notAuthenticatedComponent.propTypes = {
-        fetchUser: React.PropTypes.func.isRequired,
-        isAuthenticated: React.PropTypes.bool,
-    };
 
     return connect(mapStateToProps, { fetchUser })(notAuthenticatedComponent);
 }

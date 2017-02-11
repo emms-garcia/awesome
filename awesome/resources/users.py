@@ -23,4 +23,6 @@ class UserListResource(Resource):
             user.create()
             return UserSchema().dump(user)
         except exc.IntegrityError:
-            return {'message': 'Email already in use'}, 400
+            return {
+                'messages': {'username': ['Email already in use']}
+            }, 400

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
-import Button from '../common/Button';
 import Page from './Page';
+import PageHeader from './PageHeader';
 
 class DashboardPage extends Component {
     static propTypes = {
@@ -15,16 +16,29 @@ class DashboardPage extends Component {
     render () {
         const buttons = [
             <Button
-                className='btn btn-large red-text white'
+                bsStyle='primary'
+                bsSize='lg'
                 key='0'
-                onClick={() => browserHistory.push('/widgets')}
+                onClick={() => browserHistory.push('/library/new')}
             >
                 Add Widget
-            </Button>
+            </Button>,
+            <Button
+                bsStyle='primary'
+                bsSize='lg'
+                key='1'
+                onClick={() => browserHistory.push('/library')}
+            >
+                Import Widget
+            </Button>,
         ];
 
+        const header = (
+            <PageHeader buttons={buttons} text='Dashboard'/>
+        );
+
         return (
-            <Page buttons={buttons} header='Dashboard'>
+            <Page header={header}>
                 <div className='row'>
                     { this.renderWidgetGrid() }
                 </div>
@@ -34,20 +48,10 @@ class DashboardPage extends Component {
 
     renderWidgetGrid () {
         return (
-            <div className='col s12 center-align'>
-                <h3>Nothing here yet :(</h3>
-                <ul>
-                    <li>
-                        <h4>
-                            Go to the <Link to='/library'>Widget Library</Link> and add some Widgets.
-                        </h4>
-                    </li>
-                    <li>
-                        <h4>
-                        Create a <Link to='/library/new'> new Widget yourself.</Link>
-                        </h4>
-                    </li>
-                </ul>
+            <div className='col-md-12'>
+                <div className='row text-center'>
+                    <h1>Nothing here yet :(</h1>
+                </div>
             </div>
         );
     }

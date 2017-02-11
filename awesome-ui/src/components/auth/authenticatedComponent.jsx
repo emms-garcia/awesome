@@ -12,41 +12,25 @@ function mapStateToProps({ account }) {
 
 export function requireAuthentication(Component) {
     class AuthenticatedComponent extends React.Component {
-        componentWillMount() {
-            this.checkAuth();
-            this.state = {
-                loadIfNeeded: false,
-            };
-        }
+        static propTypes = {
+            isAuthenticated: React.PropTypes.bool,
+        };
 
-        componentWillReceiveProps(nextProps) {
-            this.checkAuth(nextProps);
-        }
+        state = { loadIfNeeded: false };
 
-        checkAuth(props = this.props) {
-            if (!props.isAuthenticated) {
-                if (!localStorage.getItem('auth_token')) {
-                    browserHistory.push('/login');
-                } else {
-                    props.fetchUser().then(action => {
-                        if (action.type === RECEIVE_USER_SUCCESS) {
-                            this.setState({ loadIfNeeded: true });
-                        } else {
-                            browserHistory.push('/login');
-                        }
-                    });
-                }
+        componentDidMount () {
+            if (localStorage.getItem('access_token')) {
+                this.props.fetchUser();
             } else {
-                this.setState({
-                    loadIfNeeded: true,
-                });
+                browserHistory.push('/login');
             }
         }
 
         render() {
             return (
                 <div>
-                    {this.props.isAuthenticated && this.state.loadIfNeeded
+                    {
+                        this.props.isAuthenticated
                         ? <Component {...this.props} />
                         : null
                     }
@@ -55,10 +39,6 @@ export function requireAuthentication(Component) {
 
         }
     }
-
-    AuthenticatedComponent.propTypes = {
-        isAuthenticated: React.PropTypes.bool,
-    };
 
     return connect(mapStateToProps, { fetchUser })(AuthenticatedComponent);
 }
