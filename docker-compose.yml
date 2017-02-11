@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: python -m awesome
+    container_name: web
+    environment:
+      - ENVIRONMENT=DEVELOPMENT
+      - SQLALCHEMY_DATABASE_URI=postgres://postgres:@db:5432/postgres
+      - SECRET_KEY=super-secret
+    volumes:
+      - .:/code
+    ports:
+      - '80:8080'
+  db:
+    container_name: db
+    image: postgres:latest
