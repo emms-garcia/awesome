@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Page from './Page';
+import { Page, PageHeader } from '../common';
 
 const NotFoundPage = () => {
     return (

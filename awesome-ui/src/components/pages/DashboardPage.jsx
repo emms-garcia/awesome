@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Button, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
-import Page from './Page';
-import PageHeader from './PageHeader';
+import { Page, PageHeader } from '../common';
 
 class DashboardPage extends Component {
     static propTypes = {
@@ -21,7 +20,7 @@ class DashboardPage extends Component {
                 key='0'
                 onClick={() => browserHistory.push('/library/new')}
             >
-                Add Widget
+                Create Widget
             </Button>,
             <Button
                 bsStyle='primary'

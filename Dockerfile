@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends software-proper
 RUN add-apt-repository ppa:nginx/stable
 RUN apt-get update && cat ${apt_packages} | xargs sudo apt-get install -y
 
+RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+RUN npm install -g request
+
 WORKDIR /
 COPY . ${requirements} /
 RUN pip install -r ${requirements}

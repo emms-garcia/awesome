@@ -25,7 +25,7 @@ const nav = () => {
                     navRoutes.map(({ href, name }, idx) => {
                         return (
                             <NavItem
-                                active={href === window.location.pathname}
+                                active={window.location.pathname.includes(href)}
                                 eventKey={idx}
                                 key={idx}
                                 onClick={() => browserHistory.push(href)}> { name }

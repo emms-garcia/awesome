@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
-import Page from './Page';
-import PageHeader from './PageHeader';
+import { Page, PageHeader } from '../common';
 
 class WidgetLibraryPage extends Component {
     static propTypes = {

@@ -5,3 +5,5 @@ libffi-dev
 libpq-dev
 nginx
 supervisor
+nodejs
+npm

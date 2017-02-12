@@ -30,7 +30,15 @@
     align-items: center;
 }
 
-.col-centered{
+.col-centered {
     float: none;
     margin: 0 auto;
+}
+
+.widget-snippet {
+    textarea {
+        height: 300px;
+        font-family: monospace;
+        font-size: large;
+    }
 }

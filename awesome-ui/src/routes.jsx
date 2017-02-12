@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 
 import DashboardPage from './components/pages/DashboardPage';
 import LoginPage from './components/pages/LoginPage';
+import NewWidgetPage from './components/pages/NewWidgetPage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import WidgetLibraryPage from './components/pages/WidgetLibraryPage';
 
@@ -13,6 +14,7 @@ export default (
     <Route path='/'>
         <Route path='dashboard' component={requireAuthentication(DashboardPage)} />
         <Route path='library' component={requireAuthentication(WidgetLibraryPage)} />
+        <Route path='library/new' component={requireAuthentication(NewWidgetPage)} />
         <Route path='login' component={requireNoAuthentication(LoginPage)}/>
 
         <Route path='*' component={NotFoundPage} />

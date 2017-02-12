@@ -21,4 +21,4 @@ PageHeader.propTypes = {
     text: React.PropTypes.string.isRequired,
 };
 
-export default PageHeader;
+export { PageHeader };

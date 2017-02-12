@@ -18,4 +18,4 @@ Page.propTypes = {
     header: React.PropTypes.node,
 };
 
-export default Page;
+export { Page };

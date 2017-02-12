@@ -4,6 +4,7 @@ import { ControlLabel, FormControl, FormGroup, HelpBlock } from 'react-bootstrap
 
 class Input extends Component {
     static propTypes = {
+        componentClass: React.PropTypes.oneOf(['input', 'textarea']),
         helpMessage: React.PropTypes.string,
         label: React.PropTypes.string,
         onChange: React.PropTypes.func,
@@ -16,7 +17,11 @@ class Input extends Component {
 
     static uniqueID = _.uniqueId('input_');
 
-    defaultProps = { type: 'text', size: 'sm' };
+    defaultProps = {
+        componentClass: 'input',
+        size: 'sm',
+        type: 'text',
+    };
 
     render () {
         return (
@@ -27,6 +32,7 @@ class Input extends Component {
             >
                 {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
                 <FormControl
+                    componentClass={this.props.componentClass}
                     onChange={this.onChange.bind(this)}
                     placeholder={this.props.placeholder}
                     type={this.props.type}
